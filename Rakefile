@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "attributes_sort"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{A slick way to sort a collection objects.}
+    gem.description = %Q{Sort a collection of objects using one or more of the attributes of your object.}
     gem.email = "karmenblake@gmail.com"
     gem.homepage = "http://github.com/kblake/attributes_sort"
     gem.authors = ["Karmen Blake"]
