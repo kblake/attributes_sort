@@ -2,7 +2,8 @@
 
 This gem allows you to take a collection of any type of object and sort them using the attributes of the object.
 
-For example,
+Example:
+
 
 require 'rubygems'
 require 'attributes_sort'
@@ -22,22 +23,9 @@ end
 people = [Person.new("joe","blow",12),Person.new("joe","blow",89),Person.new("mary","watson",32),Person.new("annie","watson",9),Person.new("bob","builder",12)]
 
 p people.attr_sort(:sort_by=>[:lastname])
-puts
 p people.attr_sort(:sort_by=>[:age])
-puts
 p people.attr_sort(:sort_by=>[:lastname,:firstname,:age])
 
-
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but
-   bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
 
 == Copyright
 
