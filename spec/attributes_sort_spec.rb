@@ -24,7 +24,7 @@ describe "AttributesSort" do
 	end
 
 	def test_sort(criteria, result)
-		@people.do_sort(:sort_by => criteria).should == result		
+		@people.attr_sort(:sort_by => criteria).should == result		
 	end
 
   it "object must have attr accessible attributes for sort_by to work" do
@@ -40,6 +40,14 @@ describe "AttributesSort" do
 
 	it "sort by age" do
 		test_sort([:age], [@p4, @p2, @p5, @p3, @p1])
+	end
+
+	it "sort by age then by first name" do
+		test_sort([:age, :firstname], [@p4, @p5, @p2, @p3, @p1])		
+	end
+
+	it "sort by age then by last name" do
+		test_sort([:age, :lastname], [@p4, @p2, @p5, @p3, @p1])				
 	end
 
 	it "sort by last name then by first name then by age" do
