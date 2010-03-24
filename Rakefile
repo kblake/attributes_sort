@@ -13,6 +13,7 @@ begin
     gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
+	Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
@@ -41,20 +42,5 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "attributes_sort #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-		gem.name = "attributes_sort"
-    gem.summary = "A slick way to sort a collection objects."
-    gem.description = "Sort a collection of objects using one or more of the attributes of your object."
-    gem.email = "karmenblake@gmail.com"
-    gem.homepage = "http://github.com/kblake/attributes_sort"
-    gem.authors = ["Karmen Blake"]			
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
 

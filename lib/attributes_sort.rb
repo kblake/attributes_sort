@@ -2,11 +2,11 @@ module AttributesSort
   def self.included(receiver)
     receiver.instance_eval do
       def build_attributes(attributes)
-        "[" + attributes.map!{|a| "object.#{a}"}.join(",") + "]"
+        "[" + attributes.map!{|attribute| "object.#{attribute}"}.join(",") + "]"
       end
 
-      def do_attributes_sort(collection, options={})
-        attributes = build_attributes(options[:sort_by])
+      def do_attributes_sort(collection, attributes)
+        attributes = build_attributes(attributes)
         collection.sort_by{|object| eval(attributes)}
       end
     end
@@ -19,9 +19,9 @@ module AttributesSort
       end
 
       def attr_sort(options = {})
-        raise "You must pass in sort_by criteria" unless options[:sort_by]
+        raise "You must pass in sort_by criteria" unless attributes = options[:sort_by]
         begin
-          class_type.do_attributes_sort(self, options)
+          class_type.do_attributes_sort(self, attributes)
         rescue NoMethodError
           raise "You must sort by an attribute that exists in the object that you are sorting"
         end
