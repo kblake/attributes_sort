@@ -11,10 +11,9 @@ module AttributesSort
 			end
 
       def class_type
-        klass = self.first.class
 				raise "All objects must respond to sort criteria"unless sortable_attributes?	
-        klass
-      end
+      	self.first.class
+			end
 
       def attr_sort(options = {})
 				@attributes = options[:sort_by]

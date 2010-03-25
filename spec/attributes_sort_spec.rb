@@ -67,6 +67,8 @@ describe "AttributesSort" do
   end
 
 	class Dog
+		include AttributesSort
+
 		attr_accessor :firstname,:lastname,:age
 
 		def initialize(firstname="",lastname="",age=0)
