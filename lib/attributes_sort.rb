@@ -1,13 +1,8 @@
 module AttributesSort
   def self.included(receiver)
     receiver.instance_eval do
-      def build_attributes(attributes)
-        "[" << attributes.map!{|attribute| "object.#{attribute}"}.join(",") << "]"
-      end
-
-      def do_attributes_sort(collection, attributes)
-				attribute_array_string = build_attributes(attributes)
-        collection.sort_by{|object| eval(attribute_array_string)}
+      def do_attributes_sort(collection, attributes)	
+				collection.sort_by { |object| attributes.map { |attribute| object.send(attribute) }}				
       end
     end
     Array.class_eval do
@@ -17,11 +12,6 @@ module AttributesSort
 
       def class_type
         klass = self.first.class
-
-        #use duck type check respond to check instead				
-        #is_same = self.all?{|object| object.class == klass}
-				#raise "All objects must be of the same class type" unless is_same
-
 				raise "All objects must respond to sort criteria"unless sortable_attributes?	
         klass
       end

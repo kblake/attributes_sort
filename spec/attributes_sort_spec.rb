@@ -38,11 +38,6 @@ describe "AttributesSort" do
     p.should respond_to(:age)
   end
 
-  it "build attributes string array to be eval'd at deferred time in sort_by block'" do
-    criteria = [:lastname, :age, :firstname]
-    Person.build_attributes(criteria).should == "[object.lastname,object.age,object.firstname]"
-  end
-
   it "sort by last name" do
     test_sort([:lastname], [@p1, @p2, @p5, @p4, @p3])
   end
@@ -69,12 +64,6 @@ describe "AttributesSort" do
 
   it "raise error object does not respond to method call" do
     lambda {test_sort([:blah], [@p1, @p2, @p5, @p4, @p3])}.should raise_error("All objects must respond to sort criteria")
-  end
-
-  it "raise error if objects are not of same class type" do
-		pending "using duck type check instead"
-    @people << "some other object"
-    lambda {test_sort([:age],[@p1, @p2, @p5, @p4, @p3])}.should raise_error("All objects must be of the same class type")
   end
 
 	class Dog
