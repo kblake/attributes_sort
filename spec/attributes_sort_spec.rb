@@ -67,14 +67,31 @@ describe "AttributesSort" do
     lambda {test_sort(nil, [@p1, @p2, @p5, @p4, @p3])}.should raise_error("You must pass in sort_by criteria")
   end
 
-  it "raise error if criteria is not a valid attribute of class" do
-    lambda {test_sort([:blah], [@p1, @p2, @p5, @p4, @p3])}.should raise_error("You must sort by an attribute that exists in the object that you are sorting")
+  it "raise error object does not respond to method call" do
+    lambda {test_sort([:blah], [@p1, @p2, @p5, @p4, @p3])}.should raise_error("All objects must respond to sort criteria")
   end
 
   it "raise error if objects are not of same class type" do
+		pending "using duck type check instead"
     @people << "some other object"
     lambda {test_sort([:age],[@p1, @p2, @p5, @p4, @p3])}.should raise_error("All objects must be of the same class type")
   end
+
+	class Dog
+		attr_accessor :firstname,:lastname,:age
+
+		def initialize(firstname="",lastname="",age=0)
+			@firstname = firstname
+			@lastname = lastname
+			@age = age
+		end
+	end
+
+	it "duck typed objects can be sorted as long as they all respond to same methods" do
+		dog = Dog.new("fido", "zib", 7)
+		@people << dog    
+		test_sort([:lastname,:firstname,:age], [@p2, @p1, @p5, @p4, @p3, dog])		
+	end
 
 end
 
