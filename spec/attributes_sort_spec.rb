@@ -66,23 +66,23 @@ describe "AttributesSort" do
     lambda {test_sort([:blah], [@p1, @p2, @p5, @p4, @p3])}.should raise_error("All objects must respond to sort criteria")
   end
 
-	class Dog
-		include AttributesSort
+  class Dog
+    include AttributesSort
 
-		attr_accessor :firstname,:lastname,:age
+    attr_accessor :firstname,:lastname,:age
 
-		def initialize(firstname="",lastname="",age=0)
-			@firstname = firstname
-			@lastname = lastname
-			@age = age
-		end
-	end
+    def initialize(firstname="",lastname="",age=0)
+      @firstname = firstname
+      @lastname = lastname
+      @age = age
+    end
+  end
 
-	it "duck typed objects can be sorted as long as they all respond to same methods" do
-		dog = Dog.new("fido", "zib", 7)
-		@people << dog    
-		test_sort([:lastname,:firstname,:age], [@p2, @p1, @p5, @p4, @p3, dog])		
-	end
+  it "duck typed objects can be sorted as long as they all respond to same methods" do
+    dog = Dog.new("fido", "zib", 7)
+    @people << dog
+    test_sort([:lastname,:firstname,:age], [@p2, @p1, @p5, @p4, @p3, dog])
+  end
 
 end
 
